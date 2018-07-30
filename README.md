@@ -1,0 +1,2 @@
+# codeSIR
+Automate SIR
