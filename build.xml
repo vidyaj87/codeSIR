@@ -1,0 +1,83 @@
+
+<project name="sample" default="driver">
+	<property name="build.dir" value="build" />
+	<property name="src.dir" value="src" />
+	<property name="lib.dir" value="lib" />
+	<property name="reports.dir" value="report" />
+	<property name="xml" value="Sample.xml" />
+
+    <path id="classpath">
+        <pathelement location="${build.dir}/classes"/>
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+
+    <taskdef resource="testngtasks" classpathref="classpath"/>
+
+	<target name="compile" depends = "demo">
+	    <echo message="Compiling Tests...."/>
+		<delete dir="${build.dir}" />
+		<mkdir dir="${build.dir}/classes" />
+		<echo message="Compiling tests" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}/classes"
+			executable="javac" classpathref="classpath">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	<!--
+	<target name="run" depends="compile">
+		<echo message="Running Tests....." />
+		<testng classpathref="classpath" outputDir="Test Report/${current.time}">
+		<xmlfileset file="${tests}.xml"/>
+		<sysproperty key="driver" value="${driver}"/>
+		</testng>
+	</target>
+-->
+	
+	<target name="run" depends="compile">
+		               <echo message="Running Tests....." />
+		               <testng classpathref="classpath" outputDir="Test Report/${current.time}">
+		               <sysproperty key="tests" value="${tests}"/>
+		               	<!--classfileset dir="${build.dir}/classes" includes="*.class" /-->
+		               <xmlfileset file="${tests}.xml"/>
+		               <sysproperty key="driver" value="${driver}"/>
+		               </testng>
+		       </target>
+	
+	<target name="demo">
+		<tstamp>
+			<format property="current.time" pattern="MMddyyyyhhmmssaa" />
+		</tstamp>
+		<mkdir dir="Test Report/${current.time}" />		
+	</target>
+
+	<target name="demo1" depends = "demo">
+	  <sleep seconds="5"/>
+	  <echo message="${current.time}" />
+	</target>
+
+	<target name="run-tests" depends = "run">
+				<mail tolist="alphy@qburst.com" from="qaautomationtester9@gmail.com"
+					subject="SIR Test Execution Report - System Generated Mail" mailhost="smtp.gmail.com" mailport="465" ssl="true"
+					user="qaautomationtester9@gmail.com" password="mobomo123" encoding="mime"
+					messagemimetype="text/html">
+					<attachments>
+						<fileset dir="Test Report/${current.time}">
+							<include name="**/emailable-report.html" />
+						</fileset>
+					</attachments>
+					<message>Test Results of Society of Interventional Radiology Website Automation - Please find the attachment.</message>
+					</mail>
+			</target> 
+
+	<target name="driver" depends = "run-tests">
+	        <property name="driver" value=""/>
+	        <echo message="Hello ${driver}"/>
+	</target>
+	
+	<target name="tests" depends = "driver">
+		    <property name="tests" value=""/>
+		    <echo message="Hello ${tests}"/>
+		
+	</target>
+
+	</project>

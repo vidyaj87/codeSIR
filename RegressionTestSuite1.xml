@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite1" verbose="1" >
+  <test name="Site test">
+      	<classes>
+      	
+      	<!--<class name="com.application.AdminLogin"/>
+      	<class name="com.application.UserLogin"/>
+      	<class name="com.application.admin.CreateClientProduct"/>
+		<class name="com.application.admin.Dashboard"/>
+		<class name="com.application.admin.CreateOnlineActivityBasic"/>
+		<class name="com.application.admin.EditSpeaker"/>		
+		<class name="com.application.bugs.ServerErrorForCMEReportOfaSession48240401"/>				
+		<class name="com.application.bugs.ErrorForCMELiveMeetingReport43478719"/>-->
+		
+		<class name="com.application.admin.CreateLiveEventActivityBasic"/>
+		<!--<class name="com.application.admin.CreateOnlineActivityWithEvaluation"/>
+		<class name="com.application.admin.CreateWebinarActivity"/>
+		<class name="com.application.admin.AddFeaturedOnlineActivity"/>-->
+		
+		
+	</classes>
+  </test>
+</suite>

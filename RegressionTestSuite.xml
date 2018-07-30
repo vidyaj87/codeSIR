@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite1" parallel = "tests">
+<test name="Site test1">
+       <classes>
+       <class name="com.application.admin.CreateClientProduct"/>
+ 	</classes>
+  </test>
+<test name="Site test2">
+<parameter name="hub"  value="http://10.2.0.172:4444/wd/hub"/>
+       <classes>
+ 			<class name="com.application.AdminLogin"/>
+		</classes>
+  </test>
+
+</suite>
